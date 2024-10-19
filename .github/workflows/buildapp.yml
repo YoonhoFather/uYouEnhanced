@@ -86,18 +86,18 @@ jobs:
         env:
           cache-name: iOS-${{ inputs.sdk_version }}-SDK
         with:
-          path: theos/sdks/
+          path: arichornlover/sdks/
           key: ${{ env.cache-name }}
           restore-keys: ${{ env.cache-name }}
 
       - name: Download iOS SDK
         if: steps.SDK.outputs.cache-hit != 'true'
         run: |
-          git clone --quiet -n --depth=1 --filter=tree:0 https://github.com/theos/sdks/
+          git clone --quiet -n --depth=1 --filter=tree:0 https://github.com/arichornlover/sdks/
           cd sdks
           git sparse-checkout set --no-cone iPhoneOS${{ inputs.sdk_version }}.sdk
           git checkout
-          mv *.sdk $THEOS/sdks
+          mv *.sdk $arichornlover/sdks
         env:
           THEOS: ${{ github.workspace }}/theos
 
